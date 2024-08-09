@@ -24,10 +24,12 @@ export default function RootLayout({
       <body className={cn ('min-h-screen w-full bg-white text-black flex',inter.className, {'debug-screens' : process.env.NODE_ENV==='development'})}
       >
         {/* sidebar */}
+        <div className="h-screen fixed sm:relative">
           <SideNavbar/>
+        </div>
           
         {/* main page */}
-        <div className="p-4 md:px-8  w-full">{children}</div>
+        <div className="ml-[60px] sm:ml-0 p-4 md:px-8 w-full overflow-hidden ">{children}</div>
       </body>
     </html>
   );
