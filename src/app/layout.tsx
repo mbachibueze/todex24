@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Head from 'next/head';
 import { cn } from "@/lib/utils";
 import SideNavbar from "@/components/SideNavBar";
 
@@ -21,6 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <title>Todex</title>
+        <meta name="description" content="This is the home page of my awesome website." />
+      </Head>
       <body className={cn ('min-h-screen w-full bg-white text-black flex',inter.className, {'debug-screens' : process.env.NODE_ENV==='development'})}
       >
         {/* sidebar */}

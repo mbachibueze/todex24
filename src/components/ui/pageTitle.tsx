@@ -2,6 +2,18 @@ import { cn } from '@/lib/utils';
 import React from 'react'
 import Image from "next/image";
 
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+
+
 type Props = {
   title: string;
   className?: string;
@@ -33,11 +45,30 @@ export default function PageTitle({title, className}: Props){
         </div>
 
         {/* Notification Icon */}
-        <div className="cursor-pointer text-[#4277DF] hover:text-[#0641B6] transition-colors duration-200">
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <div className="cursor-pointer text-[#4277DF] hover:text-[#0641B6] transition-colors duration-200">
+              <IoNotifications 
+                size={24}
+              />
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuItem>Team</DropdownMenuItem>
+            <DropdownMenuItem>Subscription</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+
+        {/* <div className="cursor-pointer text-[#4277DF] hover:text-[#0641B6] transition-colors duration-200">
             <IoNotifications 
               size={24}
             />
-        </div>
+        </div> */}
 
          {/* Use Profile */}
         <div className="flex gap-[10px] items-center bg-white text-black  p-1 nd:pr-2 rounded-[50px] cursor-pointer border border-[#4277DF]" >

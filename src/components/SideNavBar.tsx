@@ -116,7 +116,7 @@ export default function SideNavbar({}: Props) {
                 },
                 {
                   title: "Log Out",
-                  href: "/logout",
+                  href: "/logIn",
                   icon: LogOut,
                   variant: "ghost",
                 },
