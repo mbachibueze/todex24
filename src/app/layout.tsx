@@ -1,3 +1,5 @@
+
+import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -5,7 +7,7 @@ import SideNavbar from "@/components/SideNavBar";
 
 import Image from "next/image";
 
-import { Metadata } from "next";
+
 
 const poppins = Poppins({
   subsets: ["latin"],
