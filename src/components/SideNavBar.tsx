@@ -116,7 +116,7 @@ export default function SideNavbar({}: Props) {
                 },
                 {
                   title: "Log Out",
-                  href: "/",
+                  href: "https://todex24.vercel.app/",
                   icon: LogOut,
                   variant: "ghost",
                 },
