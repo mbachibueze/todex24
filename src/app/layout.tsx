@@ -32,7 +32,7 @@ export default function RootLayout({
        
 
         {/* main page */}
-        <div className="ml-[60px] sm:ml-0 md:px-8 w-full overflow-hidden">
+        <div className="">
           {children}
         </div>
       </body>
