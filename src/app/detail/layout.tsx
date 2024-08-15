@@ -29,10 +29,13 @@ export default function RootLayout({
           { "debug-screens": process.env.NODE_ENV === "development" }
         )}
       >
-       
+        {/* sidebar */}
+        <div className="h-screen fixed sm:relative">
+          <SideNavbar />
+        </div>
 
         {/* main page */}
-        <div className="ml-[60px] sm:ml-0 md:px-8 w-full overflow-hidden">
+        <div className="ml-[60px] sm:ml-0 p-4 md:px-8 w-full overflow-hidden">
           {children}
         </div>
       </body>
