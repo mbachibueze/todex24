@@ -33,7 +33,7 @@ export default function TransactionsPage({}: Props){
       header: "Name",
       cell: ({ row }) => {
         return(
-          <div className='flex sm:flex-row flex-col gap-2 items-center'>
+          <div className='flex  gap-2 items-center'>
               <img className='h-10 w-10'
               src={`https://api.dicebear.com/9.x/lorelei/svg?seed=${row.getValue("name")}`}
               alt='user-image'

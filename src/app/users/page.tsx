@@ -31,12 +31,12 @@ export default function UsersPage({}: Props): JSX.Element{
       header: "Name",
       cell: ({ row }) => {
         return(
-          <div className='flex sm:flex-row flex-col gap-2 items-center'>
+          <div className='flex gap-2 items-center'>
               <img className='h-10 w-10'
               src={`https://api.dicebear.com/9.x/lorelei/svg?seed=${row.getValue("name")}`}
               alt='user-image'
               />
-              <p>{row.getValue("name")}</p>
+              <p className='hidden md:block'>{row.getValue("name")}</p>
           </div>
         );
       }
@@ -44,14 +44,12 @@ export default function UsersPage({}: Props): JSX.Element{
     {
       accessorKey: "email",
       header: "Email",
-      cell: ({ row }) =>{
-        return(
-          <div className='text-ellipsis'>
-            <div> 
-            </div>
-            <p>{row.getValue("email")}</p>
+      cell: ({ row }) => {
+        return (
+          <div className="text-ellipsis">
+            <p className="truncate md:w-20">{row.getValue("email")}</p>
           </div>
-        )
+        );
       }
     },
     {
@@ -109,7 +107,7 @@ export default function UsersPage({}: Props): JSX.Element{
 
   const data: Payment[] = [
     {
-      name: "Temitope Oyedele",
+      name: generateRandomNigerianName(),
       id: "728ed52f",
       wallet: 100,
       trades: 23,
@@ -118,7 +116,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Erapi Akinsoye",
+      name: generateRandomNigerianName(),
       id: "489e1d42",
       wallet: 125,
       trades: 12,
@@ -127,7 +125,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Temitope Oyedele",
+      name: generateRandomNigerianName(),
       id: "728ed52f",
       wallet: 100,
       trades: 23,
@@ -136,7 +134,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Erapi Akinsoye",
+      name: generateRandomNigerianName(),
       id: "93234",
       wallet: 125,
       trades: 12,
@@ -145,7 +143,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Temitope Oyedele",
+      name: generateRandomNigerianName(),
       id: "728ed52f",
       wallet: 100,
       trades: 23,
@@ -154,7 +152,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Erapi Akinsoye",
+      name: generateRandomNigerianName(),
       id: "489e1d42",
       wallet: 125,
       trades: 12,
@@ -163,7 +161,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Temitope Oyedele",
+      name: generateRandomNigerianName(),
       id: "728ed52f",
       wallet: 100,
       trades: 23,
@@ -172,7 +170,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Erapi Akinsoye",
+      name: generateRandomNigerianName(),
       id: "489e1d42",
       wallet: 125,
       trades: 12,
@@ -181,7 +179,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Temitope Oyedele",
+      name: generateRandomNigerianName(),
       id: "728ed52f",
       wallet: 100,
       trades: 23,
@@ -190,7 +188,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Erapi Akinsoye",
+      name: generateRandomNigerianName(),
       id: "489e1d42",
       wallet: 125,
       trades: 12,
@@ -199,7 +197,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Temitope Oyedele",
+      name: generateRandomNigerianName(),
       id: "728ed52f",
       wallet: 100,
       trades: 23,
@@ -208,7 +206,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Erapi Akinsoye",
+      name: generateRandomNigerianName(),
       id: "489e1d42",
       wallet: 125,
       trades: 12,
@@ -217,7 +215,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Temitope Oyedele",
+      name: generateRandomNigerianName(),
       id: "728ed52f",
       wallet: 100,
       trades: 23,
@@ -226,7 +224,7 @@ export default function UsersPage({}: Props): JSX.Element{
       action: ""
     },
     {
-      name: "Erapi Akinsoye",
+      name: generateRandomNigerianName(),
       id: "489e1d42",
       wallet: 125,
       trades: 12,
@@ -247,6 +245,38 @@ export default function UsersPage({}: Props): JSX.Element{
 
 
 
+function generateRandomNigerianName() {
+  const firstNames = [
+    "Temitope",
+    "Erapi",
+    "Bamidele",
+    "Akinsoye",
+    "Oyedele",
+    "Adeotun",
+    "Olufunmilayo",
+    "Abosede",
+    "Oluwaseun",
+    "Adebayo"
+  ];
+
+  const lastNames = [
+    "Oyedele",
+    "Akinsoye",
+    "Adeotun",
+    "Bamidele",
+    "Erapi",
+    "Temitope",
+    "Olufunmilayo",
+    "Abosede",
+    "Oluwaseun",
+    "Adebayo"
+  ];
+
+  const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+  const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+
+  return `${firstName} ${lastName}`;
+}
 
 
  

@@ -43,6 +43,7 @@ type Payment = {
   trades: number
   status: "pending" | "processing" | "success" | "failed"
   action: string
+  time: string
 }
 
 export default function TradesPage({}: Props){
@@ -105,6 +106,10 @@ export default function TradesPage({}: Props){
     }
   },
   {
+    accessorKey: "time",
+    header: "Date",
+  },
+  {
     accessorKey: "action",
     header: "",
     cell: ({ row }) => {
@@ -143,8 +148,9 @@ export default function TradesPage({}: Props){
 
 const data: Payment[] = [
   {
-    name: "Temitope Oyedele",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 100,
     trades: 23,
     status: "pending",
@@ -152,8 +158,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Erapi Akinsoye",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 125,
     trades: 12,
     status: "failed",
@@ -161,8 +168,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Bamidele Adeotun",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 100,
     trades: 23,
     status: "success",
@@ -170,8 +178,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Bamidele Adeotun",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 125,
     trades: 12,
     status: "processing",
@@ -179,8 +188,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Temitope Oyedele",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 100,
     trades: 23,
     status: "pending",
@@ -188,8 +198,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Erapi Akinsoye",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 125,
     trades: 12,
     status: "processing",
@@ -197,8 +208,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Temitope Oyedele",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 100,
     trades: 23,
     status: "pending",
@@ -206,8 +218,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Erapi Akinsoye",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 125,
     trades: 12,
     status: "processing",
@@ -215,8 +228,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Temitope Oyedele",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 100,
     trades: 23,
     status: "pending",
@@ -224,8 +238,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Erapi Akinsoye",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 125,
     trades: 12,
     status: "processing",
@@ -233,8 +248,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Temitope Oyedele",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 100,
     trades: 23,
     status: "pending",
@@ -242,8 +258,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Erapi Akinsoye",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 125,
     trades: 12,
     status: "processing",
@@ -251,8 +268,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Temitope Oyedele",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 100,
     trades: 23,
     status: "pending",
@@ -260,8 +278,9 @@ const data: Payment[] = [
     action: ""
   },
   {
-    name: "Erapi Akinsoye",
+    name: generateRandomNigerianName(),
     id: generateRandomId(),
+    time: generateRandomDate(),
     amount: 125,
     trades: 12,
     status: "processing",
@@ -279,19 +298,42 @@ const data: Payment[] = [
   )
 }
 
+function generateRandomNigerianName() {
+  const firstNames = [
+    "Temitope",
+    "Erapi",
+    "Bamidele",
+    "Akinsoye",
+    "Oyedele",
+    "Adeotun",
+    "Olufunmilayo",
+    "Abosede",
+    "Oluwaseun",
+    "Adebayo"
+  ];
+
+  const lastNames = [
+    "Oyedele",
+    "Akinsoye",
+    "Adeotun",
+    "Bamidele",
+    "Erapi",
+    "Temitope",
+    "Olufunmilayo",
+    "Abosede",
+    "Oluwaseun",
+    "Adebayo"
+  ];
+
+  const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+  const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+
+  return `${firstName} ${lastName}`;
+}
 
 
 
 
-
-
-/* <div className='flex items-center gap-[5px] justify-between border border-[#5385ea] w-fit p-[4px] sm:py-[2px] sm:px-[6px] pl-[8px] border-[2px]-[#5385ea] rounded-[5px] transition-all duration-300 hover:text-white hover:bg-[#5385ea] cursor-pointer text-[13px] md:text-[11px] text-[#5385ea]'>
-<HiViewGridAdd
-  size={18}
-/>
-<div className='hidden md:block'>View More</div>
-
-</div> */
 
 
 
@@ -311,4 +353,16 @@ function generateRandomId() {
   }
 
   return id;
+}
+
+function generateRandomDate() {
+  const startDate = new Date("2020-01-01");
+  const endDate = new Date("2025-12-31");
+  const randomDate = new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()));
+
+  const year = randomDate.getFullYear();
+  const month = String(randomDate.getMonth() + 1).padStart(2, "0");
+  const day = String(randomDate.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
 }
