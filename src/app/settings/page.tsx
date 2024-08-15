@@ -36,6 +36,10 @@ const SettingsPage = ({ }: Props) => {
       category: "Switch to App",
       value: true,
     },
+    {
+      category: "Accept Trades",
+      value: true,
+    },
     // ...
   ];
 
