@@ -11,11 +11,11 @@ export default function Home() {
   return (
     <div className="p-4 h-screen w-screen flex overflow-hidden bg-gray-200">
       <section className="grid place-items-center w-full h-full">
-        <div className="flex flex-col gap-[40px] w-[300px] shadow p-4 rounded-[10px] items-center bg-white ">
+        <div className="flex flex-col gap-[40px] w-[300px] h-[400px] shadow py-4 px-6 rounded-[10px] items-center justify-between bg-white ">
           <div><Image src="/images/logoBlue.svg" alt="Logo" width={130} height={100} className="px-3"/> </div>
 
           {/* Input */}
-          <div className="w-[250px] flex flex-col gap-6">
+          <div className="w-full flex flex-col gap-6">
             <input className="rounded-[5px] outline-none text-black p-4 text-sm bg-gray-300 w-full h-[30px] transition-width duration-500 font-normal "
               placeholder="Username"
                   />
