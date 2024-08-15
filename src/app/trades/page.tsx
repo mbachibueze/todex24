@@ -14,19 +14,8 @@ import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { TradeDataTable } from '@/components/tradeDataTable'
 
-type Props = {}
 
-export default function TradesPage({}: Props){
 
-  
-
-  return(
-    <div className='flex flex-col gap-5 w-full'>
-      <PageTitle title="Trades"/>
-      <TradeDataTable columns={columns} data={data} />
-    </div>
-  )
-}
 
 const handleViewTrades = (id: string) => {
   // Fetch trades data for the given id and display it in a modal or separate page
@@ -44,7 +33,9 @@ const handleViewPaymentDetails = (id: string) => {
 };
 
 
-export type Payment = {
+type Props = {}
+
+type Payment = {
   name: string
   email: string
   id: string
@@ -53,8 +44,11 @@ export type Payment = {
   status: "pending" | "processing" | "success" | "failed"
   action: string
 }
- 
-export const columns: ColumnDef<Payment>[] = [
+
+export default function TradesPage({}: Props){
+
+   
+ const columns: ColumnDef<Payment>[] = [
   
   {
     accessorKey: "id",
@@ -147,16 +141,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ]
 
-/* <div className='flex items-center gap-[5px] justify-between border border-[#5385ea] w-fit p-[4px] sm:py-[2px] sm:px-[6px] pl-[8px] border-[2px]-[#5385ea] rounded-[5px] transition-all duration-300 hover:text-white hover:bg-[#5385ea] cursor-pointer text-[13px] md:text-[11px] text-[#5385ea]'>
-<HiViewGridAdd
-  size={18}
-/>
-<div className='hidden md:block'>View More</div>
-
-</div> */
-
-
-export const data: Payment[] = [
+const data: Payment[] = [
   {
     name: "Temitope Oyedele",
     id: generateRandomId(),
@@ -285,6 +270,31 @@ export const data: Payment[] = [
   },
   // ...
 ]
+
+  return(
+    <div className='flex flex-col gap-5 w-full'>
+      <PageTitle title="Trades"/>
+      <TradeDataTable columns={columns} data={data} />
+    </div>
+  )
+}
+
+
+
+
+
+
+
+/* <div className='flex items-center gap-[5px] justify-between border border-[#5385ea] w-fit p-[4px] sm:py-[2px] sm:px-[6px] pl-[8px] border-[2px]-[#5385ea] rounded-[5px] transition-all duration-300 hover:text-white hover:bg-[#5385ea] cursor-pointer text-[13px] md:text-[11px] text-[#5385ea]'>
+<HiViewGridAdd
+  size={18}
+/>
+<div className='hidden md:block'>View More</div>
+
+</div> */
+
+
+
 
 
 function generateRandomId() {
