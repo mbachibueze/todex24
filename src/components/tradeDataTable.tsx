@@ -2,6 +2,8 @@
 
 import * as React from "react";
 
+
+
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -31,7 +33,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({
+export function TradeDataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -73,7 +75,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className="flex flex-col gap-2">
       <Input
-        placeholder="Filter Users. . ."
+        placeholder="Filter Trades. . ."
         value={globalFilter}
         onChange={handleFilterChange}
         className="max-w-sm outline-none focus:outline-none"
