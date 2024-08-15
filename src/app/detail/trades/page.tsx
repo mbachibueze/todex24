@@ -1,16 +1,15 @@
 'use client'
 
 
+import { RevenueInflow } from '@/components/revenueInflow';
 
-import { DataTable } from '@/components/dataTable'
 import PageTitle from '@/components/ui/pageTitle'
 import { ColumnDef } from '@tanstack/react-table'
-import { ChartNoAxesGantt } from 'lucide-react'
 import { HiViewGridAdd } from "react-icons/hi";
 import React from 'react'
 
 import { MoreHorizontal,  Check, CheckCheck, X, Loader, CircleHelp } from "lucide-react"
-import { Button } from "@/components/ui/button"
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { TradeDataTable } from '@/components/tradeDataTable'
 
@@ -70,6 +69,10 @@ export default function TradesPage({}: Props){
     }
   },
   {
+    accessorKey: "time",
+    header: "Date",
+  },
+  {
     accessorKey: "status",
     header: "Status",
     cell:({row}) => {
@@ -104,10 +107,6 @@ export default function TradesPage({}: Props){
 
       return <div>{icon}</div>;
     }
-  },
-  {
-    accessorKey: "time",
-    header: "Date",
   },
   {
     accessorKey: "action",
