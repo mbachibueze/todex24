@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="p-4 h-screen w-screen flex overflow-hidden bg-gray-200">
       <section className="grid place-items-center w-full h-full">
-        <div className="flex flex-col gap-[40px] w-[300px] h-[400px] shadow py-4 px-6 rounded-[10px] items-center justify-between bg-white ">
+        <div className="flex flex-col gap-[41px] w-[300px] h-[400px] shadow py-4 px-6 rounded-[10px] items-center justify-between bg-white ">
           <div><Image src="/images/logoBlue.svg" alt="Logo" width={130} height={100} className="px-3"/> </div>
 
           {/* Input */}

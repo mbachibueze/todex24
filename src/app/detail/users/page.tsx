@@ -47,7 +47,7 @@ export default function UsersPage({}: Props): JSX.Element{
       cell: ({ row }) => {
         return (
           <div className="text-ellipsis">
-            <p className="truncate md:w-20">{row.getValue("email")}</p>
+            <p className="truncate w-20 md:w-full">{row.getValue("email")}</p>
           </div>
         );
       }
