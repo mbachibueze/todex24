@@ -18,16 +18,12 @@ import { useWindowWidth } from "@react-hook/window-size";
 type Props = {};
 
 export default function SideNavbar({}: Props) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true); // Start collapsed by default
   const screenWidth = useWindowWidth();
 
   useEffect(() => {
-    // Automatically collapse sidebar on medium screens and below; expand on large screens
-    if (screenWidth >= 1024) {
-      setIsCollapsed(false); // Expand sidebar on 'lg' screens (1024px and above)
-    } else if (screenWidth < 1024) {
-      setIsCollapsed(true); // Collapse sidebar on 'md' screens (768px to 1023px)
-    }
+    // Expand sidebar on 'lg' screens (1024px and above), collapse on smaller screens
+    setIsCollapsed(screenWidth < 1024);
   }, [screenWidth]);
 
   return (

@@ -100,8 +100,8 @@ function Home() {
         ))}
       </section>
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-3 transition-all">
-        <CustomerInflow />
-        <RevenueInflow />
+        {/* <CustomerInflow /> */}
+        {/* <RevenueInflow /> */}
         {/* <RevenueSource /> */}
       </section>
     </div>
