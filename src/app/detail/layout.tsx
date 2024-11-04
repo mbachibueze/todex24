@@ -1,18 +1,16 @@
+'use client'
 
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import SideNavbar from "@/components/SideNavBar";
-
 import Image from "next/image";
-
-
+import { useState } from "react";
 
 const poppins = Poppins({
   subsets: ["latin"],
-
-  weight: ["100", "200", "300", "400","500", "600", "700", "800", "900"], // Add the weights you need
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"], // Add the weights you need
 });
 
 export default function RootLayout({
@@ -20,6 +18,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
   return (
     <html lang="en">
       <body
@@ -29,13 +29,21 @@ export default function RootLayout({
           { "debug-screens": process.env.NODE_ENV === "development" }
         )}
       >
-        {/* sidebar */}
-        <div className="h-screen fixed sm:relative">
-          <SideNavbar />
+        {/* Sidebar */}
+        <div
+          className={cn(
+            "h-full fixed left-0 top-0 z-10 transition-all duration-300 lg:w-[240px] md:w-[60px]"
+          )}
+        >
+          <SideNavbar/>
         </div>
 
-        {/* main page */}
-        <div className="ml-[60px] sm:ml-0 p-4 md:px-8 w-full overflow-hidden">
+        {/* Main content area */}
+        <div
+          className={cn(
+            "flex-grow h-screen overflow-y-auto transition-all duration-300 p-5 ml-[60px] lg:ml-[240px]"
+          )}
+        >
           {children}
         </div>
       </body>

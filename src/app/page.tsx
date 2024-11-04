@@ -1,40 +1,52 @@
 'use client'
 
 import { useState } from 'react';
-
-
 import { FcGoogle } from "react-icons/fc";
-
 import Image from "next/image";
-import Link from "next/link";
-
 
 interface User {
   username: string;
   password: string;
 }
 
-const users: User[] = [
-  { username: 'adule', password: 'solomon' },
-  { username: 'user1', password: 'password456' },
-];
+const testUser: User = { username: 'User', password: 'password' };
 
-const getUserByUsernameAndPassword = (username: string, password: string) =>{
-  return users.find((user) => user.username === username && user.password === password);
+// Mock function to simulate API-based login validation and return token
+const authenticateUser = async (username: string, password: string): Promise<{ success: boolean, token?: string }> => {
+  if (username === testUser.username && password === testUser.password) {
+    return { success: true, token: 'test-token' }; // Replace 'test-token' with a generated token in production
+  }
+
+  try {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return { success: data.success, token: data.token }; // Assumes API returns { success, token }
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+  }
+  return { success: false };
 }
 
-
 export default function Home() {
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const user = getUserByUsernameAndPassword(username, password);
-    if (user) {
-      // login successful, redirect to dashboard
+
+    const { success, token } = await authenticateUser(username, password);
+    if (success && token) {
+      // Save token to localStorage or sessionStorage
+      localStorage.setItem('token', token); // or sessionStorage.setItem('token', token);
+
       window.location.href = '/detail/dashboard';
     } else {
       setError('Incorrect username or password');
@@ -49,7 +61,6 @@ export default function Home() {
             <Image src="/images/logoBlue.svg" alt="Logo" width={130} height={100} className="px-3" />
           </div>
 
-          {/* Input */}
           <form onSubmit={handleLogin} className='flex flex-col gap-12'>
             <div className="w-full flex flex-col gap-6">
               <input
@@ -71,7 +82,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Button */}
             <div className="w-full gap-1 flex flex-col items-center justify-center">
               <button
                 type="submit"

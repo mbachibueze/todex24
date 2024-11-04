@@ -73,6 +73,7 @@ export default function PageTitle({title, className}: Props){
          {/* Use Profile */}
         <div className="flex gap-[10px] items-center bg-white text-black  p-1 nd:pr-2 rounded-[50px] cursor-pointer border border-[#4277DF]" >
           <Image src="/images/profileIcon.svg" alt="Logo" width={20} height={20}/>
+          {/* username */}
           <div className="font-semibold text-[13px] md:block hidden">Temitope Oyedele</div>
           <div className="md:block hidden"><FaAngleRight /></div>
                     

@@ -1,130 +1,92 @@
-'use client'
+"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Nav } from "./ui/nav";
 import Image from "next/image";
-
-
 
 import {
   Waypoints, 
   Activity, 
   LayoutDashboard, 
   User, 
-  ShieldCheck, 
   Settings, 
   LogOut,
-  Menu
-} from "lucide-react"
+} from "lucide-react";
 
-import {
-  useWindowWidth,
-} from '@react-hook/window-size'
+import { useWindowWidth } from "@react-hook/window-size";
 
-import { Button } from "./ui/button";
-
-type Props = {}
+type Props = {};
 
 export default function SideNavbar({}: Props) {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const screenWidth = useWindowWidth();
 
-  const [isCollapsed, setIsCollapsed] = useState(false)
- 
-  const onlyWidth = useWindowWidth()
-  const mobileWidth = onlyWidth < 754
+  useEffect(() => {
+    // Automatically collapse sidebar on medium screens and below; expand on large screens
+    if (screenWidth >= 1024) {
+      setIsCollapsed(false); // Expand sidebar on 'lg' screens (1024px and above)
+    } else if (screenWidth < 1024) {
+      setIsCollapsed(true); // Collapse sidebar on 'md' screens (768px to 1023px)
+    }
+  }, [screenWidth]);
 
-  const toggleSidebar =() =>{
-    setIsCollapsed(!isCollapsed)
-  }
-
-  return(
-
-      <div className="relative flex flex-col h-screen gap-7 border-r md:px-3 px-1 pt-5 pb-10">
-        {! mobileWidth && (
-          <div className="absolute right-[-15px] top-[20px]">
-            <Button onClick={toggleSidebar} variant='secondary' className="rounded-5 h-[24px] md:p-2 px-[5px]" >
-              <Menu size={15}/>
-            </Button>
-          </div>
-
+  return (
+    <div
+      className={`relative flex flex-col h-screen gap-7 border-r pt-5 pb-10 transition-all duration-300 ${
+        isCollapsed ? "w-[60px] px-1" : "w-[240px] px-3"
+      }`}
+    >
+      {/* Logo */}
+      <div className="p-2">
+        {isCollapsed ? (
+          <Image src="/images/miniBlue.svg" alt="Logo" width={30} height={100} className="pl-2" />
+        ) : (
+          <Image src="/images/logoBlue.svg" alt="Logo" width={130} height={100} className="px-3" />
         )}
+      </div>
 
-            {/* <div className="p-2">
-              {isCollapsed ? (
-                <Image src="/images/logoMini.png" alt="Logo" width={30} height={100} className=" md:p-1  pl-2"/> 
-              ) : (
-                <Image src="/images/logoBlack.png" alt="Logo" width={130} height={100} className="px-3"/>
-              ) }
-            </div> */}
-
-          {!mobileWidth && (
-            <div className="p-2">
-              {isCollapsed ? (
-              <Image src="/images/miniBlue.svg" alt="Logo" width={30} height={100} className=" md:p-1  pl-2"/>          
-              ) : (
-                <Image src="/images/logoBlue.svg" alt="Logo" width={130} height={100} className="px-3"/>         
-              ) }
-            </div>
-          )}
-
-          {mobileWidth && (
-            <div className="p-2">
-            <Image src="/images/miniBlue.svg" alt="Logo" width={40} height={100} className=" md:p-1  px-1"/>          
-          </div>
-          )}  
-        
-
-      
-
-        <Nav
-              isCollapsed={mobileWidth ? true : isCollapsed}
-              links={[
-                {
-                  title: "Dashboard",
-                  href: "/detail/dashboard",
-                  icon: LayoutDashboard,
-                  variant: "default",
-                },
-                {
-                  title: "Transactions",
-                  href: "/detail/transactions",
-                  icon: Activity,
-                  variant: "ghost",
-                },
-                {
-                  title: "Trades",
-                  href: "/detail/trades",
-                  icon: Waypoints,
-                  variant: "ghost",
-                },
-                {
-                  title: "Users",
-                  href: "/detail/users",
-                  icon: User,
-                  variant: "ghost",
-                },
-                {
-                  title: "Authentication",
-                  href: "/detail/authentication",
-                  icon: ShieldCheck,
-                  variant: "ghost",
-                },
-                {
-                  title: "Settings",
-                  href: "/detail/settings",
-                  icon: Settings,
-                  variant: "ghost",
-                },
-                {
-                  title: "Log Out",
-                  href: "https://todex24.vercel.app/",
-                  icon: LogOut,
-                  variant: "ghost",
-                },
-              ]}
-            />
-
-         
-
+      {/* Navigation Links */}
+      <Nav
+        isCollapsed={isCollapsed}
+        links={[
+          {
+            title: "Dashboard",
+            href: "/detail/dashboard",
+            icon: LayoutDashboard,
+            variant: "default",
+          },
+          {
+            title: "Transactions",
+            href: "/detail/transactions",
+            icon: Activity,
+            variant: "ghost",
+          },
+          {
+            title: "Trades",
+            href: "/detail/trades",
+            icon: Waypoints,
+            variant: "ghost",
+          },
+          {
+            title: "Users",
+            href: "/detail/users",
+            icon: User,
+            variant: "ghost",
+          },
+          {
+            title: "Settings",
+            href: "/detail/settings",
+            icon: Settings,
+            variant: "ghost",
+          },
+          {
+            title: "Log Out",
+            href: "/",
+            icon: LogOut,
+            variant: "ghost",
+          },
+        ]}
+      />
     </div>
-  )
+  );
 }

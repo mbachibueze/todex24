@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { TrendingUp } from "lucide-react"
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
 
@@ -17,14 +18,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
 
 const chartConfig = {
   desktop: {
@@ -38,6 +31,28 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function RevenueInflow() {
+  const [chartData, setChartData] = useState<
+    { month: string; desktop: number; mobile?: number }[]
+  >([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/revenue-inflow")
+        if (!response.ok) throw new Error("Failed to fetch data")
+        const data = await response.json()
+
+        // Assuming the data returned from the backend is in the format:
+        // [{ month: "January", desktop: number, mobile: number }, ...]
+        setChartData(data)
+      } catch (error) {
+        console.error("Error fetching revenue inflow data:", error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
   return (
     <Card className="flex w-full flex-col justify-between rounded-xl border shadow">
       <CardHeader>

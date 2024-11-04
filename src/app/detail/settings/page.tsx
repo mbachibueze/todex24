@@ -5,6 +5,7 @@ import PageTitle from '@/components/ui/pageTitle';
 import { SettingsTable } from '@/components/settingsTable';
 import { ColumnDef } from '@tanstack/react-table';
 import { Switch } from "@/components/ui/switch";
+import withAuth from '@/app/detail/path/to/withAuth'
 
 type Props = {};
 
@@ -51,4 +52,4 @@ const SettingsPage = ({ }: Props) => {
   );
 };
 
-export default SettingsPage;
+export default withAuth(SettingsPage);
